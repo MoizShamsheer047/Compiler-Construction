@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace calculator_task_1
+{
+    public partial class Form1 : Form
+    {
+        private double accumulator = 0;
+        private char lastOperation;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Operator_Pressed(object sender, EventArgs e)
+        {
+            char operation = (sender as Button).Text[0];
+
+            if (operation == 'C')
+            {
+                accumulator = 0;
+            }
+            else if (operation == 's' || operation == 'c' || operation == 't' || operation == 'l')
+            {
+                double currentValue = double.Parse(Display.Text);
+
+                // Convert degrees to radians
+                double radians = currentValue * Math.PI / 180;
+
+                switch (operation)
+                {
+                    case 's':
+                        currentValue = Math.Sin(radians);
+                        break;
+                    case 'c':
+                        currentValue = Math.Cos(radians);
+                        break;
+                    case 't':
+                        currentValue = Math.Tan(radians);
+                        break;
+                    case 'l':
+                        currentValue = Math.Log10(currentValue);
+                        break;
+                }
+
+                accumulator = currentValue;
+            }
+            else
+            {
+                double currentValue = double.Parse(Display.Text);
+
+                switch (lastOperation)
+                {
+                    case '+':
+                        accumulator += currentValue;
+                        break;
+                    case '-':
+                        accumulator -= currentValue;
+                        break;
+                    case '×':
+                        accumulator *= currentValue;
+                        break;
+                    case '÷':
+                        accumulator /= currentValue;
+                        break;
+                    default:
+                        accumulator = currentValue;
+                        break;
+                }
+            }
+
+            lastOperation = operation;
+
+            Display.Text = operation == '=' ? accumulator.ToString() : "0";
+        }
+
+
+        private void Number_Pressed(object sender, EventArgs e)
+        {
+            string number = (sender as Button).Text;
+            Display.Text = Display.Text == "0" ? number : Display.Text + number;
+        }
+    }
+    }
