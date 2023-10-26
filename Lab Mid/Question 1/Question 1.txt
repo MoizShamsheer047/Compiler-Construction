@@ -1,0 +1,54 @@
+Introduction:
+The Regex (Regular Expression) library in C# provides a powerful tool for pattern matching and manipulating strings. It allows you to search, replace, and validate strings based on specific patterns. This functionality is achieved by using a combination of metacharacters, anchors, quantifiers, and other constructs.
+
+1. Creating a Regex Object:
+To use the Regex library in C#, you need to create a Regex object. The constructor of the Regex class takes a pattern string as its parameter. This pattern string defines the pattern you want to match against.
+
+Example:
+Regex regex = new Regex("pattern");
+
+2. Basic Patterns:
+Patterns in regex are composed of literal characters and metacharacters. Literal characters match themselves, while metacharacters have special meanings. Here are some examples of basic patterns:
+
+•	Literal Pattern: Matches the exact characters specified.
+Example: `"hello"` matches the string "hello".
+
+•	Character Classes: Matches any character within the specified set.
+Example: `"[aeiou]"` matches any vowel character.
+
+•	Wildcard: Matches any single character.
+Example: `"."` matches any character except newline.
+
+3. Anchors:
+Anchors are used to match positions within a string. They do not consume any characters but rather assert a condition at a specific position. Here are some commonly used anchors:
+
+•	Start Anchor (`^`): Matches the start of a string.
+Example: `"^Hello"` matches "Hello, World!" but not "Goodbye, World!".
+
+•	End Anchor (`$`): Matches the end of a string.
+Example: `"World!$"` matches "Hello, World!" but not "Hello, World! Goodbye!".
+
+4. Quantifiers:
+Quantifiers specify the number of times a pattern should occur. They can be used to match a specific number of occurrences or a range of occurrences. Here are some examples of quantifiers:
+
+•	Asterisk (`*`): Matches zero or more occurrences of the preceding pattern.
+Example: `"ab*c"` matches "ac", "abc", "abbc", etc.
+
+•	Plus (`+`): Matches one or more occurrences of the preceding pattern.
+Example: `"ab+c"` matches "abc", "abbc", "abbbc", etc.
+
+•	Question Mark (`?`): Matches zero or one occurrence of the preceding pattern.
+Example: `"colou?r"` matches "color" and "colour".
+
+5. Separators:
+Separators are used to split strings based on a specific pattern. The `Split` method in the Regex class is used for this purpose. Here is an example of using a separator:
+
+Example:
+string input = "apple,banana,orange";
+
+string[] fruits = Regex.Split(input, ",");
+
+In this example, the `Split` method splits the input string into an array of strings using the comma (",") as the separator.
+
+Conclusion:
+The Regex library in C# provides a powerful and flexible way to work with patterns in strings. By using metacharacters, anchors, quantifiers, and separators, you can perform various operations such as searching, replacing, and validating strings based on specific patterns. Understanding these concepts will help you effectively utilize the Regex library in your C# applications.
